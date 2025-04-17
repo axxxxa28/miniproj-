@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Asset Management</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-university"></i>
+          <span>College Asset Management</span>
+        </div>
+        <nav>
+          <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+          </div>
+          <div class="nav-bar" id="nav-bar">
+            <a href="#dashboard" class="active"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a href="#assets"><i class="fas fa-boxes"></i> Assets</a>
+            <a href="#departments"><i class="fas fa-building"></i> Departments</a>
+            <a id="requests-nav" href="#requests"><i class="fas fa-clipboard-list"></i> Requests</a>
+            <a href="#notifications"><i class="fas fa-bell"></i> Notifications</a>
+            <a id="purchase-orders-nav" href="#purchase-orders"><i class="fas fa-shopping-cart"></i> Purchase Orders</a>
+            <a id="suppliers-nav" href="#suppliers"><i class="fas fa-truck"></i> Suppliers</a>
+            <a id="deadstock-nav" href="#deadstock"><i class="fas fa-archive"></i> Deadstock</a>
+            <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <section id="dashboard" class="section">
+        <div class="section-header">
+          <h2>Dashboard</h2>
+          <span id="user-greeting">Welcome, User</span>
+        </div>
+        <div class="card-container">
+          <div class="card">
+            <h3>Total Assets</h3>
+            <p id="total-assets">Loading...</p>
+          </div>
+          <div class="card">
+            <h3>Total Departments</h3>
+            <p id="total-departments">Loading...</p>
+          </div>
+          <div class="card">
+            <h3>Pending Requests</h3>
+            <p id="pending-requests">Loading...</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="assets" class="section">
+        <div class="section-header">
+          <h2>Assets</h2>
+          <button class="btn btn-outline" id="add-asset-btn">
+            <i class="fas fa-plus"></i> Add Asset
+          </button>
+        </div>
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Asset ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Department</th>
+                <th id="cost-header">Cost</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="assets-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="departments" class="section">
+        <div class="section-header">
+          <h2>Departments</h2>
+        </div>
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Department ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Head of Department</th>
+              </tr>
+            </thead>
+            <tbody id="departments-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="purchase-orders" class="section">
+        <div class="section-header">
+          <h2>Purchase Orders</h2>
+          <button class="btn btn-primary" onclick="location.href='create_purchase_order.html'">
+            <i class="fas fa-plus"></i> Create Purchase Order
+          </button>
+        </div>
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Supplier</th>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Cost</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="purchase-orders-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="suppliers" class="section">
+        <div class="section-header">
+          <h2>Suppliers</h2>
+        </div>
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Supplier ID</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Address</th>
+              </tr>
+            </thead>
+            <tbody id="suppliers-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="requests" class="section">
+        <div class="section-header">
+          <h2>Requests</h2>
+          <button id="request-button" class="btn btn-primary" onclick="handleRequestButton()">
+            <i class="fas fa-check-circle"></i> Approve Requests
+          </button>
+        </div>
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Request ID</th>
+                <th>Asset ID</th>
+                <th>Department ID</th>
+                <th>Status</th>
+                <th>Date Requested</th>
+              </tr>
+            </thead>
+            <tbody id="requests-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="create-requests" class="section">
+        <div class="section-header">
+          <h2>Create Request</h2>
+          <button class="btn btn-primary" onclick="location.href='create_request.html'">
+            <i class="fas fa-plus"></i> Create Request
+          </button>
+        </div>
+        <p>Submit a request for assets you need for your project or coursework.</p>
+      </section>
+
+      <section id="deadstock" class="section">
+        <div class="section-header">
+          <h2>Deadstock</h2>
+        </div>
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Asset ID</th>
+                <th>Name</th>
+                <th>Reason</th>
+                <th>Date Added</th>
+              </tr>
+            </thead>
+            <tbody id="deadstock-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="notifications" class="section">
+        <div class="section-header">
+          <h2>Notifications</h2>
+        </div>
+        <ul id="notifications-list" class="notification-list"></ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      &copy; 2025 College Asset Management System. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
